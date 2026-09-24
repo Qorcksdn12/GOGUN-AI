@@ -29,11 +29,10 @@ game/
   test_grad.js test_train_node.js test_continue_node.js   브라우저 학습기 검증(기울기 유한차분 등)
   difftest_*.js/py                 JS<->C 시뮬레이터 프레임 단위 동일성 검증(관측 v1/v2 포함)
   ui_check.py train_check.py       헤드리스 크롬 UI/학습 자동 점검
-  weights.json                     기본(PRETRAINED) 가중치 — 사용자 제공 코인 인식 모델(관측 84, 은닉 128)
+  weights.json                     기본(PRETRAINED) 가중치
   weights_survival_previous.json   이전 기본 모델(생존 전용, 관측 64) — 참고/비교용
   checkpoint_final.npz              이전 기본 모델의 학습 재개용 체크포인트(.npz)
   weights_coin.json checkpoint_coin_example.npz   자체 미세조정한 코인 인식 예시 가중치(BATTLE TIER 9와 동일)
-  ck_coin_original_upload.json      사용자가 준 원본 파일 그대로 보관
   sounds.json                      추출한 사운드 14개(base64 MP3 뱅크)
   ladder.json                      BATTLE 1~10단계 상대 데이터(가중치 포함)
   scene.json                       SWF에서 추출한 도형·스프라이트·비트맵(WebP)
