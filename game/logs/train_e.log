@@ -1,0 +1,121 @@
+it 2105 steps 68.98M t 4s ep_len 272 dead% 33 ent 0.337 vloss 0.0001 clip 0.003 lvw [0.14, 0.23, 0.14, 0.14, 0.14, 0.23] hard 2/0
+it 2110 steps 69.14M t 7s ep_len 818 dead% 31 ent 0.320 vloss 0.0005 clip 0.002 lvw [0.08, 0.12, 0.08, 0.08, 0.42, 0.21] hard 12/0
+it 2115 steps 69.30M t 11s ep_len 1333 dead% 7 ent 0.362 vloss 0.0002 clip 0.002 lvw [0.08, 0.1, 0.08, 0.08, 0.47, 0.2] hard 16/0
+it 2120 steps 69.47M t 15s ep_len 1304 dead% 8 ent 0.314 vloss 0.0002 clip 0.002 lvw [0.07, 0.09, 0.07, 0.07, 0.42, 0.27] hard 20/0
+it 2125 steps 69.63M t 18s ep_len 1406 dead% 3 ent 0.333 vloss 0.0008 clip 0.002 lvw [0.07, 0.09, 0.07, 0.07, 0.42, 0.29] hard 22/0
+it 2130 steps 69.80M t 22s ep_len 1327 dead% 6 ent 0.310 vloss 0.0009 clip 0.004 lvw [0.06, 0.07, 0.06, 0.06, 0.49, 0.26] hard 35/0
+it 2135 steps 69.96M t 26s ep_len 1291 dead% 9 ent 0.297 vloss 0.0023 clip 0.004 lvw [0.06, 0.06, 0.06, 0.08, 0.51, 0.24] hard 48/0
+it 2140 steps 70.12M t 29s ep_len 1337 dead% 9 ent 0.297 vloss 0.0002 clip 0.001 lvw [0.06, 0.06, 0.06, 0.07, 0.53, 0.23] hard 54/0
+it 2145 steps 70.29M t 34s ep_len 1328 dead% 11 ent 0.267 vloss 0.0021 clip 0.002 lvw [0.05, 0.06, 0.05, 0.07, 0.52, 0.25] hard 64/0
+it 2150 steps 70.45M t 38s ep_len 1335 dead% 13 ent 0.282 vloss 0.0004 clip 0.003 lvw [0.05, 0.06, 0.05, 0.06, 0.49, 0.28] hard 73/0
+  EVAL det  deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:2 L4:6 L5:0 | full-game cleared 16/16 mean frames 6964
+  EVAL stoc deaths/32 in 1500 frames: L0:0 L1:1 L2:0 L3:2 L4:6 L5:0 | full-game cleared 13/16 mean frames 6669
+it 2155 steps 70.62M t 44s ep_len 1735 dead% 10 ent 0.283 vloss 0.0009 clip 0.004 lvw [0.05, 0.06, 0.05, 0.06, 0.5, 0.28] hard 77/0
+it 2160 steps 70.78M t 49s ep_len 1766 dead% 10 ent 0.250 vloss 0.0011 clip 0.003 lvw [0.05, 0.06, 0.05, 0.06, 0.5, 0.28] hard 88/0
+it 2165 steps 70.94M t 54s ep_len 1797 dead% 11 ent 0.243 vloss 0.0008 clip 0.003 lvw [0.05, 0.05, 0.05, 0.06, 0.5, 0.29] hard 99/0
+it 2170 steps 71.11M t 58s ep_len 1928 dead% 10 ent 0.251 vloss 0.0017 clip 0.003 lvw [0.05, 0.05, 0.05, 0.06, 0.5, 0.28] hard 108/25
+it 2175 steps 71.27M t 62s ep_len 1701 dead% 14 ent 0.263 vloss 0.0023 clip 0.004 lvw [0.05, 0.05, 0.05, 0.05, 0.53, 0.26] hard 129/66
+it 2180 steps 71.43M t 65s ep_len 1665 dead% 15 ent 0.263 vloss 0.0017 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.23] hard 145/107
+it 2185 steps 71.60M t 69s ep_len 1477 dead% 17 ent 0.272 vloss 0.0025 clip 0.008 lvw [0.05, 0.05, 0.05, 0.05, 0.58, 0.22] hard 160/128
+it 2190 steps 71.76M t 73s ep_len 1667 dead% 16 ent 0.288 vloss 0.0020 clip 0.005 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.23] hard 171/152
+it 2195 steps 71.93M t 76s ep_len 1705 dead% 17 ent 0.263 vloss 0.0011 clip 0.005 lvw [0.05, 0.05, 0.05, 0.05, 0.54, 0.25] hard 189/184
+it 2200 steps 72.09M t 80s ep_len 1554 dead% 16 ent 0.280 vloss 0.0014 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.24] hard 201/217
+  EVAL det  deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:3 L4:0 L5:0 | full-game cleared 15/16 mean frames 6857
+  EVAL stoc deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:2 L4:6 L5:0 | full-game cleared 14/16 mean frames 6752
+it 2205 steps 72.25M t 90s ep_len 1521 dead% 15 ent 0.251 vloss 0.0032 clip 0.007 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.23] hard 214/245
+it 2210 steps 72.42M t 95s ep_len 1421 dead% 14 ent 0.277 vloss 0.0012 clip 0.005 lvw [0.05, 0.05, 0.05, 0.05, 0.58, 0.21] hard 225/274
+it 2215 steps 72.58M t 101s ep_len 1518 dead% 14 ent 0.255 vloss 0.0015 clip 0.008 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 235/304
+it 2220 steps 72.74M t 106s ep_len 1463 dead% 17 ent 0.248 vloss 0.0013 clip 0.012 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 257/338
+it 2225 steps 72.91M t 109s ep_len 1513 dead% 18 ent 0.238 vloss 0.0011 clip 0.001 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 272/382
+it 2230 steps 73.07M t 113s ep_len 1469 dead% 19 ent 0.261 vloss 0.0030 clip 0.005 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 288/421
+it 2235 steps 73.24M t 117s ep_len 1422 dead% 17 ent 0.289 vloss 0.0006 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.6, 0.2] hard 301/446
+it 2240 steps 73.40M t 120s ep_len 1478 dead% 16 ent 0.283 vloss 0.0031 clip 0.008 lvw [0.05, 0.05, 0.05, 0.05, 0.6, 0.19] hard 314/480
+it 2245 steps 73.56M t 124s ep_len 1518 dead% 16 ent 0.227 vloss 0.0040 clip 0.017 lvw [0.05, 0.05, 0.06, 0.05, 0.58, 0.22] hard 331/508
+it 2250 steps 73.73M t 127s ep_len 1511 dead% 15 ent 0.239 vloss 0.0019 clip 0.019 lvw [0.05, 0.05, 0.06, 0.05, 0.58, 0.22] hard 339/542
+  EVAL det  deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:3 L4:5 L5:0 | full-game cleared 15/16 mean frames 6857
+  EVAL stoc deaths/32 in 1500 frames: L0:1 L1:0 L2:0 L3:3 L4:7 L5:0 | full-game cleared 14/16 mean frames 6661
+it 2255 steps 73.89M t 136s ep_len 1519 dead% 16 ent 0.249 vloss 0.0014 clip 0.007 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 357/582
+it 2260 steps 74.06M t 140s ep_len 1439 dead% 16 ent 0.211 vloss 0.0003 clip 0.004 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 367/610
+it 2265 steps 74.22M t 144s ep_len 1480 dead% 15 ent 0.236 vloss 0.0025 clip 0.006 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.23] hard 377/635
+it 2270 steps 74.38M t 147s ep_len 1461 dead% 16 ent 0.240 vloss 0.0015 clip 0.007 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.24] hard 392/680
+it 2275 steps 74.55M t 151s ep_len 1401 dead% 14 ent 0.255 vloss 0.0018 clip 0.004 lvw [0.06, 0.05, 0.05, 0.05, 0.56, 0.23] hard 406/722
+it 2280 steps 74.71M t 154s ep_len 1354 dead% 16 ent 0.262 vloss 0.0038 clip 0.006 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.23] hard 425/752
+it 2285 steps 74.87M t 160s ep_len 1293 dead% 17 ent 0.241 vloss 0.0024 clip 0.005 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.23] hard 437/787
+it 2290 steps 75.04M t 167s ep_len 1374 dead% 18 ent 0.269 vloss 0.0015 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.58, 0.21] hard 457/829
+it 2295 steps 75.20M t 175s ep_len 1495 dead% 15 ent 0.262 vloss 0.0026 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.58, 0.22] hard 469/868
+it 2300 steps 75.37M t 183s ep_len 1531 dead% 14 ent 0.259 vloss 0.0024 clip 0.010 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 482/905
+  EVAL det  deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:3 L4:0 L5:0 | full-game cleared 15/16 mean frames 6857
+  EVAL stoc deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:2 L4:7 L5:0 | full-game cleared 14/16 mean frames 6813
+it 2305 steps 75.53M t 195s ep_len 1384 dead% 13 ent 0.268 vloss 0.0016 clip 0.001 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.2] hard 495/942
+it 2310 steps 75.69M t 203s ep_len 1336 dead% 12 ent 0.279 vloss 0.0008 clip 0.001 lvw [0.05, 0.05, 0.05, 0.05, 0.6, 0.19] hard 504/972
+it 2315 steps 75.86M t 208s ep_len 1307 dead% 14 ent 0.289 vloss 0.0020 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.62, 0.18] hard 518/1007
+it 2320 steps 76.02M t 212s ep_len 1471 dead% 12 ent 0.293 vloss 0.0010 clip 0.004 lvw [0.05, 0.05, 0.05, 0.05, 0.61, 0.19] hard 529/1045
+it 2325 steps 76.19M t 215s ep_len 1500 dead% 14 ent 0.271 vloss 0.0019 clip 0.003 lvw [0.05, 0.06, 0.05, 0.05, 0.6, 0.19] hard 538/1093
+it 2330 steps 76.35M t 219s ep_len 1500 dead% 12 ent 0.272 vloss 0.0020 clip 0.007 lvw [0.06, 0.06, 0.05, 0.05, 0.59, 0.2] hard 549/1124
+it 2335 steps 76.51M t 222s ep_len 1434 dead% 12 ent 0.265 vloss 0.0010 clip 0.004 lvw [0.06, 0.05, 0.05, 0.05, 0.58, 0.2] hard 558/1158
+it 2340 steps 76.68M t 226s ep_len 1334 dead% 13 ent 0.278 vloss 0.0019 clip 0.006 lvw [0.06, 0.05, 0.05, 0.05, 0.56, 0.23] hard 570/1197
+it 2345 steps 76.84M t 230s ep_len 1389 dead% 12 ent 0.276 vloss 0.0024 clip 0.010 lvw [0.06, 0.05, 0.05, 0.05, 0.56, 0.23] hard 581/1237
+it 2350 steps 77.00M t 233s ep_len 1365 dead% 11 ent 0.277 vloss 0.0021 clip 0.010 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.23] hard 592/1269
+  EVAL det  deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:0 L4:0 L5:0 | full-game cleared 14/16 mean frames 6852
+  EVAL stoc deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:0 L4:3 L5:2 | full-game cleared 10/16 mean frames 6506
+it 2355 steps 77.17M t 239s ep_len 1386 dead% 14 ent 0.263 vloss 0.0025 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.23] hard 602/1311
+it 2360 steps 77.33M t 242s ep_len 1341 dead% 14 ent 0.284 vloss 0.0023 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.24] hard 614/1349
+it 2365 steps 77.50M t 249s ep_len 1374 dead% 14 ent 0.287 vloss 0.0021 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.55, 0.25] hard 623/1378
+it 2370 steps 77.66M t 257s ep_len 1486 dead% 13 ent 0.297 vloss 0.0012 clip 0.009 lvw [0.05, 0.05, 0.05, 0.05, 0.54, 0.25] hard 632/1400
+it 2375 steps 77.82M t 264s ep_len 1515 dead% 12 ent 0.286 vloss 0.0015 clip 0.006 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.24] hard 641/1433
+it 2380 steps 77.99M t 272s ep_len 1502 dead% 11 ent 0.282 vloss 0.0003 clip 0.004 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.24] hard 649/1471
+it 2385 steps 78.15M t 280s ep_len 1511 dead% 11 ent 0.283 vloss 0.0011 clip 0.001 lvw [0.05, 0.05, 0.05, 0.05, 0.55, 0.25] hard 661/1509
+it 2390 steps 78.32M t 288s ep_len 1438 dead% 9 ent 0.281 vloss 0.0008 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.55, 0.24] hard 664/1542
+it 2395 steps 78.48M t 291s ep_len 1454 dead% 9 ent 0.279 vloss 0.0017 clip 0.006 lvw [0.05, 0.05, 0.05, 0.05, 0.55, 0.24] hard 671/1580
+it 2400 steps 78.64M t 295s ep_len 1413 dead% 11 ent 0.246 vloss 0.0025 clip 0.006 lvw [0.05, 0.05, 0.05, 0.05, 0.53, 0.27] hard 686/1621
+  EVAL det  deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:0 L4:2 L5:0 | full-game cleared 15/16 mean frames 6857
+  EVAL stoc deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:2 L4:3 L5:0 | full-game cleared 13/16 mean frames 6830
+it 2405 steps 78.81M t 300s ep_len 1448 dead% 12 ent 0.256 vloss 0.0021 clip 0.009 lvw [0.05, 0.05, 0.05, 0.05, 0.53, 0.27] hard 697/1650
+it 2410 steps 78.97M t 304s ep_len 1444 dead% 12 ent 0.256 vloss 0.0013 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.54, 0.26] hard 705/1694
+it 2415 steps 79.13M t 308s ep_len 1402 dead% 12 ent 0.266 vloss 0.0020 clip 0.007 lvw [0.05, 0.05, 0.05, 0.05, 0.52, 0.28] hard 721/1732
+it 2420 steps 79.30M t 311s ep_len 1343 dead% 13 ent 0.269 vloss 0.0004 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.53, 0.27] hard 735/1769
+it 2425 steps 79.46M t 315s ep_len 1325 dead% 12 ent 0.262 vloss 0.0008 clip 0.001 lvw [0.05, 0.05, 0.05, 0.05, 0.53, 0.27] hard 740/1799
+it 2430 steps 79.63M t 318s ep_len 1360 dead% 11 ent 0.252 vloss 0.0013 clip 0.007 lvw [0.05, 0.05, 0.05, 0.05, 0.53, 0.27] hard 748/1836
+it 2435 steps 79.79M t 322s ep_len 1311 dead% 10 ent 0.237 vloss 0.0022 clip 0.004 lvw [0.05, 0.05, 0.05, 0.05, 0.52, 0.28] hard 759/1877
+it 2440 steps 79.95M t 325s ep_len 1406 dead% 11 ent 0.278 vloss 0.0019 clip 0.010 lvw [0.05, 0.05, 0.05, 0.05, 0.53, 0.26] hard 773/1914
+it 2445 steps 80.12M t 329s ep_len 1415 dead% 12 ent 0.281 vloss 0.0008 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.55, 0.25] hard 784/1943
+it 2450 steps 80.28M t 332s ep_len 1353 dead% 12 ent 0.249 vloss 0.0017 clip 0.008 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.24] hard 794/1978
+  EVAL det  deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:3 L4:1 L5:0 | full-game cleared 10/16 mean frames 6232
+  EVAL stoc deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:3 L4:2 L5:1 | full-game cleared 10/16 mean frames 6320
+it 2455 steps 80.45M t 338s ep_len 1312 dead% 13 ent 0.257 vloss 0.0017 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.23] hard 812/2025
+it 2460 steps 80.61M t 341s ep_len 1301 dead% 12 ent 0.260 vloss 0.0012 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.58, 0.22] hard 821/2050
+it 2465 steps 80.77M t 345s ep_len 1379 dead% 13 ent 0.250 vloss 0.0029 clip 0.005 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 832/2087
+it 2470 steps 80.94M t 349s ep_len 1425 dead% 12 ent 0.265 vloss 0.0020 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 843/2131
+it 2475 steps 81.10M t 352s ep_len 1467 dead% 10 ent 0.267 vloss 0.0007 clip 0.005 lvw [0.05, 0.05, 0.05, 0.05, 0.58, 0.22] hard 851/2163
+it 2480 steps 81.26M t 356s ep_len 1430 dead% 11 ent 0.260 vloss 0.0019 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.23] hard 858/2186
+it 2485 steps 81.43M t 360s ep_len 1423 dead% 11 ent 0.259 vloss 0.0017 clip 0.007 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.23] hard 870/2221
+it 2490 steps 81.59M t 363s ep_len 1423 dead% 12 ent 0.280 vloss 0.0014 clip 0.004 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.24] hard 884/2257
+it 2495 steps 81.76M t 367s ep_len 1436 dead% 11 ent 0.275 vloss 0.0018 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.24] hard 890/2284
+it 2500 steps 81.92M t 370s ep_len 1420 dead% 11 ent 0.276 vloss 0.0024 clip 0.004 lvw [0.05, 0.05, 0.05, 0.05, 0.58, 0.22] hard 900/2319
+  EVAL det  deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:4 L4:0 L5:0 | full-game cleared 16/16 mean frames 6964
+  EVAL stoc deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:3 L4:2 L5:0 | full-game cleared 10/16 mean frames 6151
+it 2505 steps 82.08M t 376s ep_len 1449 dead% 11 ent 0.268 vloss 0.0005 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.22] hard 914/2355
+it 2510 steps 82.25M t 380s ep_len 1419 dead% 12 ent 0.263 vloss 0.0013 clip 0.003 lvw [0.05, 0.06, 0.05, 0.05, 0.59, 0.2] hard 925/2393
+it 2515 steps 82.41M t 383s ep_len 1416 dead% 14 ent 0.253 vloss 0.0025 clip 0.003 lvw [0.05, 0.06, 0.05, 0.05, 0.56, 0.23] hard 933/2420
+it 2520 steps 82.58M t 387s ep_len 1394 dead% 12 ent 0.267 vloss 0.0018 clip 0.002 lvw [0.05, 0.06, 0.05, 0.05, 0.56, 0.23] hard 942/2455
+it 2525 steps 82.74M t 390s ep_len 1331 dead% 12 ent 0.244 vloss 0.0013 clip 0.005 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.22] hard 949/2485
+it 2530 steps 82.90M t 394s ep_len 1432 dead% 10 ent 0.241 vloss 0.0031 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.23] hard 955/2514
+it 2535 steps 83.07M t 398s ep_len 1474 dead% 10 ent 0.250 vloss 0.0011 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.55, 0.25] hard 965/2547
+it 2540 steps 83.23M t 401s ep_len 1553 dead% 11 ent 0.241 vloss 0.0016 clip 0.004 lvw [0.05, 0.05, 0.05, 0.05, 0.55, 0.25] hard 978/2591
+it 2545 steps 83.39M t 405s ep_len 1544 dead% 11 ent 0.210 vloss 0.0016 clip 0.006 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.24] hard 988/2626
+it 2550 steps 83.56M t 408s ep_len 1526 dead% 11 ent 0.235 vloss 0.0007 clip 0.001 lvw [0.05, 0.05, 0.05, 0.05, 0.56, 0.23] hard 999/2660
+  EVAL det  deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:2 L4:1 L5:0 | full-game cleared 13/16 mean frames 6484
+  EVAL stoc deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:5 L4:1 L5:0 | full-game cleared 13/16 mean frames 6487
+it 2555 steps 83.72M t 414s ep_len 1447 dead% 11 ent 0.241 vloss 0.0022 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 1007/2698
+it 2560 steps 83.89M t 417s ep_len 1404 dead% 12 ent 0.253 vloss 0.0007 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 1014/2725
+it 2565 steps 84.05M t 421s ep_len 1543 dead% 11 ent 0.264 vloss 0.0023 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.57, 0.22] hard 1025/2762
+it 2570 steps 84.21M t 424s ep_len 1542 dead% 12 ent 0.258 vloss 0.0022 clip 0.005 lvw [0.05, 0.05, 0.05, 0.05, 0.59, 0.21] hard 1035/2787
+it 2575 steps 84.38M t 428s ep_len 1539 dead% 10 ent 0.253 vloss 0.0004 clip 0.001 lvw [0.05, 0.05, 0.05, 0.05, 0.6, 0.2] hard 1042/2810
+it 2580 steps 84.54M t 432s ep_len 1519 dead% 11 ent 0.252 vloss 0.0006 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.6, 0.2] hard 1054/2839
+it 2585 steps 84.71M t 435s ep_len 1374 dead% 12 ent 0.228 vloss 0.0011 clip 0.003 lvw [0.05, 0.05, 0.05, 0.05, 0.6, 0.2] hard 1065/2871
+it 2590 steps 84.87M t 439s ep_len 1321 dead% 11 ent 0.227 vloss 0.0004 clip 0.004 lvw [0.05, 0.05, 0.05, 0.05, 0.61, 0.19] hard 1072/2897
+it 2595 steps 85.03M t 442s ep_len 1383 dead% 12 ent 0.237 vloss 0.0010 clip 0.002 lvw [0.05, 0.05, 0.05, 0.05, 0.61, 0.19] hard 1080/2936
+it 2600 steps 85.20M t 446s ep_len 1465 dead% 12 ent 0.248 vloss 0.0038 clip 0.004 lvw [0.05, 0.05, 0.05, 0.05, 0.61, 0.19] hard 1093/2964
+  EVAL det  deaths/32 in 1500 frames: L0:0 L1:0 L2:0 L3:4 L4:2 L5:1 | full-game cleared 13/16 mean frames 6489
+  EVAL stoc deaths/32 in 1500 frames: L0:0 L1:0 L2:1 L3:1 L4:3 L5:4 | full-game cleared 11/16 mean frames 6275
+saved ck_e

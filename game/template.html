@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f3f3ee">
+<title>gogun // ai</title>
+<style>
+  :root { --paper:#f3f3ee; --ink:#0b0b0b; --dim:#8b8b85; --soft:#dcdcd4; --ok:#1fa653; --red:#c8341c;
+    --mono:"IBM Plex Mono","JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,"D2Coding","Noto Sans Mono CJK KR","Noto Sans KR","Malgun Gothic",monospace; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html { background:var(--paper); }
+  body { margin:0; background:var(--paper); color:var(--ink); font:400 13px/1.55 var(--mono); -webkit-text-size-adjust:100%; }
+  .app { max-width:1180px; margin:0 auto; padding:0 0 calc(40px + env(safe-area-inset-bottom)); }
+  button, select, input { font:inherit; color:inherit; border-radius:0; }
+  button { cursor:pointer; }
+  /* ---- header */
+  .top { display:flex; justify-content:space-between; align-items:center; padding:calc(22px + env(safe-area-inset-top)) 14px 14px; }
+  .brand { font-size:17px; letter-spacing:.02em; } .brand .sl { font-weight:700; } .brand .nm { color:var(--dim); }
+  .clock { display:flex; align-items:center; gap:10px; color:var(--dim); font-size:12.5px; }
+  .dot { width:9px; height:9px; border-radius:50%; background:var(--ok); display:inline-block; }
+  .dot.busy { animation:blink 1s steps(2,jump-none) infinite; } @keyframes blink { 50% { opacity:.25; } }
+  .hr { height:1px; background:var(--soft); margin:0 14px; }
+  /* ---- tabs */
+  .tabs { display:flex; margin-top:10px; padding-left:14px; border-bottom:3px solid var(--ink); overflow-x:auto; scrollbar-width:none; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tab { position:relative; background:none; border:0; border-right:2px solid var(--ink); padding:0 20px; height:46px; color:var(--dim); font-weight:600; font-size:12px; letter-spacing:.16em; white-space:nowrap; }
+  .tab.on { color:var(--ink); } .tab.on::after { content:""; position:absolute; left:0; right:0; bottom:-3px; height:5px; background:var(--ink); }
+  /* ---- section header + box */
+  .shead { padding:14px 14px 12px; color:var(--dim); font-size:12px; letter-spacing:.2em; line-height:1.9; text-transform:uppercase; }
+  .panel { display:none; } .panel.on { display:block; }
+  .box { border:3px solid var(--ink); margin:0 2px; }
+  .bar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:12px 14px; border-bottom:2px solid var(--ink); }
+  .btn { background:var(--ink); color:var(--paper); border:2px solid var(--ink); padding:9px 14px; font-weight:600; font-size:12px; letter-spacing:.06em; }
+  .btn:hover { background:#2a2a2a; } .btn.ghost { background:transparent; color:var(--ink); } .btn.ghost:hover { background:var(--soft); }
+  .btn.on { background:var(--ink); color:var(--paper); } .btn:disabled { opacity:.35; cursor:not-allowed; }
+  .seg { display:inline-flex; border:2px solid var(--ink); }
+  .seg button { background:transparent; border:0; border-right:2px solid var(--ink); padding:8px 11px; font-weight:600; font-size:12px; letter-spacing:.05em; }
+  .seg button:last-child { border-right:0; } .seg button:hover { background:var(--soft); } .seg button.on { background:var(--ink); color:var(--paper); }
+  select, input[type=number], input[type=text] { background:var(--paper); border:2px solid var(--ink); padding:7px 9px; font-size:12.5px; min-width:0; }
+  .spacer { flex:1; }
+  .stage { position:relative; aspect-ratio:4/3; background:#000; border-bottom:2px solid var(--ink); overflow:hidden; }
+  .stage canvas { width:100%; height:100%; display:block; touch-action:none; cursor:pointer; }
+  #loading { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:var(--paper); color:var(--dim); letter-spacing:.2em; font-size:12px; }
+  .row { padding:14px 16px; border-top:2px solid var(--ink); } .row:first-child { border-top:0; }
+  .row .t { font-weight:700; font-size:15px; line-height:1.35; } .row .p { color:var(--dim); margin-top:3px; word-break:break-word; } .row .m { color:var(--dim); font-size:12px; margin-top:3px; }
+  .meter { height:11px; border:2px solid var(--ink); margin-top:8px; position:relative; background:var(--paper); } .meter i { position:absolute; left:0; top:0; bottom:0; width:0; background:var(--ink); }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; } .grid2 > .row { border-top:2px solid var(--ink); } .grid2 > .row:nth-child(odd) { border-right:2px solid var(--ink); } .grid2 > .row:nth-child(-n+2) { border-top:0; }
+  .row.k .t { font-size:18px; font-variant-numeric:tabular-nums; } .row.k .p { font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 3px; }
+  /* play layout */
+  .play { display:grid; grid-template-columns:minmax(0,1fr); }
+  /* network */
+  .netmain { display:grid; grid-template-columns:minmax(0,1fr); }
+  .netside { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); border-bottom:2px solid var(--ink); } .netside .stage { border-bottom:0; border-right:2px solid var(--ink); }
+  .netside .info .row { padding:10px 12px; } .netside .info .t { font-size:13px; }
+  .viz { padding:12px 14px 14px; } .viz canvas { display:block; max-width:100%; } #net-tip { min-height:20px; margin-top:8px; color:var(--dim); font-size:12px; }
+  .wblock { margin-bottom:14px; } .wtitle { font-weight:600; font-size:12px; margin-bottom:5px; } .wnote { color:var(--dim); font-size:11.5px; margin-top:3px; }
+  .wcanvas { width:100%; image-rendering:pixelated; border:2px solid var(--ink); display:block; } .wblock.sq .wcanvas { max-width:440px; }
+  .ghead { margin:12px 0 4px; color:var(--dim); font-size:11.5px; letter-spacing:.2em; border-bottom:1px solid var(--soft); padding-bottom:3px; }
+  .irow { display:grid; grid-template-columns:24px minmax(84px,1.1fr) minmax(70px,1.6fr) 46px 46px; gap:8px; align-items:center; padding:2px 0; font-size:12px; }
+  .irow .in { color:var(--dim); } .irow .vl { text-align:right; font-variant-numeric:tabular-nums; }
+  .irow .bar { position:relative; height:9px; border:1px solid var(--ink); padding:0; display:block; } .irow .bar::after { content:""; position:absolute; left:50%; top:-2px; bottom:-2px; width:1px; background:var(--ink); }
+  .irow .bar i { position:absolute; top:0; bottom:0; background:var(--ink); } .irow .bar i.neg { background:var(--red); }
+  .irow .imp { position:relative; height:5px; background:var(--soft); display:block; } .irow .imp i { position:absolute; left:0; top:0; bottom:0; background:var(--dim); }
+  .legend { color:var(--dim); font-size:11.5px; padding:0 14px 12px; }
+  .dropzone { position:fixed; inset:0; z-index:999; display:none; align-items:center; justify-content:center; background:rgba(11,11,11,.85); padding:24px; }
+  .dropzone.on { display:flex; }
+  .dropzone .dz-inner { border:3px dashed var(--paper); color:var(--paper); padding:36px 28px; text-align:center; font-weight:700; font-size:15px; letter-spacing:.06em; max-width:420px; }
+  .dropzone .dz-inner span { display:block; margin-top:10px; font-weight:400; font-size:11.5px; color:#c7c7c0; letter-spacing:.02em; }
+  /* train */
+  .settings { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 12px; padding:12px 14px; border-bottom:2px solid var(--ink); }
+  .settings label { display:flex; flex-direction:column; gap:4px; font-size:11.5px; color:var(--dim); letter-spacing:.1em; text-transform:uppercase; } .settings input, .settings select { width:100%; color:var(--ink); letter-spacing:0; text-transform:none; }
+  .chartwrap { border-top:2px solid var(--ink); padding:10px 12px 8px; } .chartwrap canvas { width:100%; height:190px; display:block; }
+  #log { margin:0; padding:10px 14px; border-top:2px solid var(--ink); height:170px; overflow:auto; font-size:11.5px; line-height:1.5; color:var(--dim); white-space:pre; background:var(--paper); }
+  .note { padding:10px 14px; color:var(--dim); font-size:12px; border-top:2px solid var(--ink); }
+  /* battle */
+  input[type=range] { accent-color:var(--ink); width:110px; }
+  .inl { display:inline-flex; align-items:center; gap:6px; font-size:11.5px; color:var(--dim); letter-spacing:.1em; }
+  .lanes { display:grid; grid-template-columns:1fr; } .lane + .lane { border-top:2px solid var(--ink); }
+  .lhead { padding:10px 14px; border-bottom:2px solid var(--ink); } .lhead .t { font-weight:700; font-size:15px; } .lhead .p { color:var(--dim); font-size:12px; }
+  .score { display:grid; grid-template-columns:1fr 1fr 1.3fr; border-top:2px solid var(--ink); } .score > div { padding:8px 12px; border-right:2px solid var(--ink); } .score > div:last-child { border-right:0; background:var(--ink); color:var(--paper); }
+  .score span { display:block; font-size:11px; letter-spacing:.14em; color:var(--dim); } .score .tot span { color:#b9b9b2; } .score b { font-size:17px; font-variant-numeric:tabular-nums; }
+  .banner { font-size:17px !important; } .banner.win { color:var(--ok); } .banner.lose { color:var(--red); }
+  #b-log { margin:0; padding:10px 14px; border-top:2px solid var(--ink); min-height:70px; font-size:11.5px; line-height:1.5; color:var(--dim); white-space:pre; overflow:auto; }
+  /* info */
+  .doc { padding:6px 16px 18px; } .doc h3 { margin:20px 0 6px; font-size:13px; letter-spacing:.14em; } .doc p, .doc li { color:#3a3a36; margin:5px 0; } .doc ul { margin:4px 0; padding-left:20px; } .doc code { background:var(--soft); padding:0 4px; }
+  .doc table { border-collapse:collapse; width:100%; margin:6px 0; font-size:12px; } .doc td, .doc th { border:2px solid var(--ink); padding:5px 8px; text-align:left; } .doc th { background:var(--ink); color:var(--paper); font-weight:600; letter-spacing:.05em; }
+  /* ---- wide screens */
+  @media (min-width: 900px) {
+    body { font-size:14px; }
+    .box { margin:0 14px; } .shead, .top { padding-left:20px; padding-right:20px; } .hr { margin:0 20px; } .tabs { padding-left:20px; }
+    .tab { padding:0 30px; font-size:12.5px; }
+    .play { grid-template-columns:minmax(0,1fr) 340px; } .play .bar { grid-column:1 / -1; } .play .rows { border-left:2px solid var(--ink); }
+    .netmain { grid-template-columns:300px minmax(0,1fr); } .netside { display:block; border-bottom:0; border-right:2px solid var(--ink); } .netside .stage { border-right:0; border-bottom:2px solid var(--ink); }
+    .settings { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .lanes { grid-template-columns:1fr 1fr; } .lane + .lane { border-left:2px solid var(--ink); }
+    .train-metrics { grid-template-columns:repeat(4,1fr) !important; }
+    .train-metrics > .row { border-top:2px solid var(--ink) !important; border-right:2px solid var(--ink) !important; }
+    .train-metrics > .row:nth-child(-n+4) { border-top:0 !important; } .train-metrics > .row:nth-child(4n) { border-right:0 !important; }
+    .train-split { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); } .train-split .right { border-left:2px solid var(--ink); }
+    .train-split .left { display:flex; } .train-split .chartwrap { flex:1; display:flex; } .train-split .chartwrap canvas { flex:1; height:auto; min-height:250px; }
+  }
+  @media (max-width: 420px) { .tab { padding:0 15px; letter-spacing:.1em; font-size:11px; } .btn { padding:9px 11px; } .row { padding:12px 13px; } .irow { grid-template-columns:20px 1fr 1fr 40px 34px; gap:6px; font-size:11px; } .row.k .t { font-size:16px; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><span class="sl">//</span><span class="nm">gogun</span></div>
+    <div class="clock"><i class="dot" id="dot"></i><span id="clock">--:--:--</span></div>
+  </header>
+  <div class="hr"></div>
+  <nav class="tabs" id="tabs">
+    <button class="tab on" data-tab="play">PLAY</button><button class="tab" data-tab="battle">BATTLE</button><button class="tab" data-tab="net">NETWORK</button><button class="tab" data-tab="train">TRAIN</button><button class="tab" data-tab="info">INFO</button>
+  </nav>
+
+  <!-- ================= PLAY ================= -->
+  <section class="panel on" id="p-play">
+    <div class="shead"><div>PLAY</div><div id="play-sub">-</div></div>
+    <div class="box play">
+      <div class="bar">
+        <div class="seg" id="modeseg"><button id="m-ai" class="on">AI</button><button id="m-me">HUMAN</button></div>
+        <div class="seg" id="speedseg"><button data-speed="1" class="on">1x</button><button data-speed="2">2x</button><button data-speed="4">4x</button><button data-speed="8">8x</button><button data-speed="16">16x</button><button data-speed="32">32x</button></div>
+        <button class="btn" id="pause">PAUSE</button><button class="btn ghost" id="restart">RESTART</button>
+        <select id="lvl" title="start level"><option value="0">START: LEVEL 1</option><option value="1">START: LEVEL 2</option><option value="2">START: LEVEL 3</option><option value="3">START: LEVEL 4</option><option value="4">START: LEVEL 5</option><option value="5">START: LEVEL 6</option></select>
+        <button class="btn ghost on" id="auto">AUTO RESTART: ON</button>
+        <select id="model-sel-play" title="model"></select>
+        <button class="btn ghost" id="play-import">IMPORT</button>
+        <button class="btn ghost on" id="snd">SOUND: ON</button><input type="range" id="vol" min="0" max="100" value="60" title="volume">
+      </div>
+      <div class="stage"><canvas id="cv" width="640" height="480"></canvas><div id="loading">LOADING ASSETS</div></div>
+      <div class="rows">
+        <div class="row"><div class="t" id="r-state-t">-</div><div class="p" id="r-state-p">-</div><div class="m" id="r-state-m">-</div></div>
+        <div class="row"><div class="t">AI OUTPUT</div><div class="p" id="r-ai-p">-</div><div class="meter"><i id="bar-ai"></i></div></div>
+        <div class="row"><div class="t">PROGRESS</div><div class="p" id="r-prog-p">-</div><div class="meter"><i id="bar-prog"></i></div></div>
+        <div class="row"><div class="t">RESULTS</div><div class="p" id="r-res-p">-</div><div class="m" id="r-res-m">-</div></div>
+        <div class="row"><div class="t">MODEL</div><div class="p" id="r-model-p">-</div><div class="m" id="r-hint">-</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BATTLE ================= -->
+  <section class="panel" id="p-battle">
+    <div class="shead"><div>BATTLE</div><div id="battle-sub">DISTANCE + COINS | SAME SEED, SAME MAP</div></div>
+    <div class="box">
+      <div class="bar">
+        <label class="inl">LEFT <select id="b-p1"></select></label><label class="inl">RIGHT <select id="b-p2"></select></label>
+        <label class="inl">MATCH <select id="b-len"><option value="900">30 S</option><option value="1800" selected>60 S</option><option value="3600">120 S</option><option value="0">FULL RUN</option></select></label>
+        <button class="btn" id="b-start">START</button>
+        <div class="seg" id="b-speed"><button data-bspeed="1" class="on">1x</button><button data-bspeed="2">2x</button><button data-bspeed="4">4x</button><button data-bspeed="8">8x</button><button data-bspeed="16">16x</button></div>
+      </div>
+      <div class="lanes">
+        <div class="lane"><div class="lhead"><div class="t" id="b-n1">-</div><div class="p" id="b-s1">-</div></div><div class="stage" style="border-bottom:0"><canvas id="b-cv1"></canvas></div>
+          <div class="score"><div><span>DIST</span><b id="b-d1">0</b></div><div><span>COINS</span><b id="b-c1">0</b></div><div class="tot"><span>TOTAL</span><b id="b-t1">0</b></div></div></div>
+        <div class="lane"><div class="lhead"><div class="t" id="b-n2">-</div><div class="p" id="b-s2">-</div></div><div class="stage" style="border-bottom:0"><canvas id="b-cv2"></canvas></div>
+          <div class="score"><div><span>DIST</span><b id="b-d2">0</b></div><div><span>COINS</span><b id="b-c2">0</b></div><div class="tot"><span>TOTAL</span><b id="b-t2">0</b></div></div></div>
+      </div>
+      <div class="row"><div class="t banner" id="b-banner">-</div><div class="p" id="b-time">-</div><div class="meter"><i id="b-bar"></i></div></div>
+      <pre id="b-log">아직 대결 기록이 없습니다.</pre>
+      <div class="note">두 선수가 같은 시드(같은 맵, 같은 코인 배치)로 동시에 달립니다. 점수 = 거리 점수(스크롤 거리 / 3) + 코인 점수(금 50 - 5 x 레벨, 은 5, 보너스 100 + 20 x 레벨). 죽으면 그 시점의 점수로 고정되고, 제한 시간이 끝나면 살아 있는 쪽도 그 시점 점수로 비교합니다. TIER 1 ~ 10은 약한 모델에서 강한 모델 순서입니다. LEFT를 HUMAN으로 두면 직접 대결할 수 있고, 클릭 / 터치 / 스페이스바로 조작합니다.</div>
+    </div>
+  </section>
+
+  <!-- ================= NETWORK ================= -->
+  <section class="panel" id="p-net">
+    <div class="shead"><div>NETWORK</div><div id="net-sub">-</div></div>
+    <div class="box">
+      <div class="bar">
+        <div class="seg" id="viewseg"><button data-view="graph" class="on">GRAPH</button><button data-view="weights">WEIGHTS</button><button data-view="inputs">INPUTS</button></div>
+        <select id="model-sel-net" title="model"></select>
+      </div>
+      <div class="netmain">
+        <div class="netside">
+          <div class="stage"><canvas id="mini-net"></canvas></div>
+          <div class="info">
+            <div class="row"><div class="t" id="n-out-t">-</div><div class="p" id="n-out-p">-</div></div>
+            <div class="row"><div class="t">ARCHITECTURE</div><div class="p" id="n-arch">-</div></div>
+          </div>
+        </div>
+        <div class="viz">
+          <div id="net-graph-wrap"><canvas id="net-graph"></canvas><div id="net-tip">칸에 마우스를 올리거나 터치하면 값이 보입니다</div>
+            <div class="legend" style="padding:8px 0 0">검은 칸은 양수, 붉은 칸은 음수입니다. 선은 지금 프레임에서 가장 강한 연결이며 검정은 촉진, 빨강은 억제입니다.</div></div>
+          <div id="net-weights-wrap" style="display:none"></div>
+          <div id="net-inputs-wrap" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRAIN ================= -->
+  <section class="panel" id="p-train">
+    <div class="shead"><div>TRAIN</div><div id="train-sub">PPO IN BROWSER | IDLE</div></div>
+    <div class="box">
+      <div class="bar">
+        <button class="btn" id="t-scratch">START FROM SCRATCH</button><button class="btn ghost" id="t-cont">CONTINUE PRETRAINED</button><button class="btn ghost" id="t-stop" disabled>STOP</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="t-eval">EVAL 30 GAMES</button><button class="btn ghost" id="t-export">EXPORT</button><button class="btn ghost" id="t-import">IMPORT</button><input type="file" id="t-file" accept="application/json,.json" hidden>
+      </div>
+      <div class="settings">
+        <label>hidden units<select id="s-hidden"><option value="32">32</option><option value="64" selected>64</option><option value="128">128</option></select></label>
+        <label>workers<select id="s-workers"></select></label>
+        <label>envs (total)<select id="s-envs"><option>32</option><option selected>64</option><option>128</option></select></label>
+        <label>learning rate<input type="number" id="s-lr" value="0.0003" step="0.0001" min="0.00001"></label>
+        <label>entropy bonus<input type="number" id="s-ent" value="0.01" step="0.002" min="0"></label>
+        <label>hard-state replay<select id="s-hard"><option value="0" selected>off</option><option value="0.15">light</option><option value="0.25">heavy</option></select></label>
+        <label>inputs<select id="s-obs"><option value="1" selected>64 (survival)</option><option value="2">84 (coin-aware)</option></select></label>
+        <label>coin reward / point<input type="number" id="s-coin" value="0.001" step="0.0002" min="0"></label>
+      </div>
+      <div class="grid2 train-metrics">
+        <div class="row k"><div class="p">iteration</div><div class="t" id="m-iter">0</div></div>
+        <div class="row k"><div class="p">env frames</div><div class="t" id="m-steps">0</div></div>
+        <div class="row k"><div class="p">speed</div><div class="t" id="m-sps">-</div></div>
+        <div class="row k"><div class="p">mean episode</div><div class="t" id="m-len">-</div></div>
+        <div class="row k"><div class="p">deaths / episode</div><div class="t" id="m-dead">-</div></div>
+        <div class="row k"><div class="p">policy entropy</div><div class="t" id="m-ent">-</div></div>
+        <div class="row k"><div class="p">last eval (clear)</div><div class="t" id="m-eval">-</div></div>
+        <div class="row k"><div class="p">elapsed</div><div class="t" id="m-time">-</div></div>
+      </div>
+      <div class="train-split">
+        <div class="left"><div class="chartwrap"><canvas id="chart"></canvas></div></div>
+        <div class="right"><div class="stage" style="border-bottom:0"><canvas id="mini-train"></canvas></div></div>
+      </div>
+      <pre id="log">아직 학습하지 않았습니다. START FROM SCRATCH 를 누르세요.</pre>
+      <div class="note">학습은 이 기기의 CPU에서 Web Worker로 돌아갑니다(오프라인 트레이너와 같은 PPO). PLAY 탭은 학습 중인 모델(EMA 평균)로 실시간 플레이합니다. 단일 코어에서 은닉 64로 처음부터 학습한 실측: 약 175만 프레임(약 12분) 뒤 전체 게임 30판 중 23판(77 %) 클리어. 워커를 늘리면 거의 비례해 빨라집니다.</div>
+    </div>
+  </section>
+
+  <div id="dropzone" class="dropzone"><div class="dz-inner">DROP A MODEL JSON HERE TO IMPORT<br><span>64 or 84 input MLP — exported by this page (EXPORT) or export_ck.py</span></div></div>
+
+  <!-- ================= INFO ================= -->
+  <section class="panel" id="p-info">
+    <div class="shead"><div>INFO</div><div>REMAKE + PPO AGENT</div></div>
+    <div class="box"><div class="doc">
+      <h3>이 페이지는</h3>
+      <p>Flash 게임 <code>고군분투.swf</code>(ActionScript 2)를 역컴파일한 로직 그대로 다시 만든 리메이크입니다. 물리, 충돌 박스, 레벨 맵, 코인 배치, 레벨업 규칙은 바이트코드에서 가져왔고 그림은 SWF 안의 도형, 비트맵, 타임라인을 그대로 그립니다.</p>
+      <h3>조작 (HUMAN 모드)</h3>
+      <ul><li>달리는 중에 화면 클릭(또는 터치, 스페이스바): 점프.</li><li>공중에서 다시 클릭: 뚫어뻥 밧줄 발사. 탑 꼭대기에 닿으면 걸립니다.</li><li>스윙 중에는 누르고 있으면 끌어올리고, 떼면 떨어집니다. 스윙이 끝나면 스핀 점프로 날아갑니다.</li></ul>
+      <h3>에이전트</h3>
+      <p>입력 64개, 은닉층 2개(tanh), 출력 로짓 1개인 MLP가 매 프레임 마우스 버튼을 누를지 정합니다. PPO로 학습하며 보상은 생존 프레임당 +0.02, 클리어 +2, 사망은 0입니다. 시작 레벨, 진행도, 스크롤 위상을 무작위로 뽑고, 자주 죽는 레벨을 더 자주 뽑으며, 선택적으로 죽기 직전 상태를 다시 학습합니다.</p>
+      <p>입력은 캐릭터 상태, 밧줄 상태, 화면에 보이는 블록 6개, 남은 지면 시간, 그리고 게임 규칙으로 계산한 전방 예측 특징(지금 밧줄을 쏘면 탑에 걸리는가, 점프하거나 떨어지면 어디에 착지하는가)입니다. 화면에 없는 정보는 쓰지 않습니다. NETWORK 탭의 INPUTS에서 64개 입력을 모두 볼 수 있습니다.</p>
+      <table><tr><th>항목</th><th>값</th></tr>
+        <tr><td>블록</td><td>150 px. 1 구멍, 2 지면, 3 밧줄 탑, 4 결승</td></tr>
+        <tr><td>점프</td><td>초속 30, 중력 3.5, 낙하 한계 20</td></tr>
+        <tr><td>밧줄</td><td>프레임당 +45 / -35 px, 탑 꼭대기에 걸림, 스핀 초속 45, 중력 5.25</td></tr>
+        <tr><td>레벨</td><td>블록 50 / 100 / 150 / 200 / 250 / 300개, 속도 15 18 21 23 25 27 px/frame</td></tr>
+        <tr><td>클리어</td><td>결승 블록이 나타나면 클리어 (약 6,950프레임, 232초)</td></tr></table>
+      <h3>브라우저에서 학습</h3>
+      <p>TRAIN 탭에서 START FROM SCRATCH를 누르면 무작위 가중치에서 시작합니다. Web Worker마다 게임 복사본이 있어 PPO 기울기를 계산하고, 페이지가 평균해서 Adam으로 갱신합니다. 속도는 CPU 코어 수에 거의 비례하므로 WORKERS를 늘리세요. 단일 코어 실측으로 은닉 64, 약 175만 프레임(12분)에서 전체 게임의 77 %를 클리어했습니다. 사전학습 모델은 오프라인(C 시뮬레이터 + numpy)으로 약 9,830만 프레임을 학습했고 전체 게임의 약 99 %를 클리어합니다. CONTINUE PRETRAINED는 그 가중치에서 이어서 학습합니다.</p>
+      <h3>한계</h3>
+      <ul><li>진짜 Flash Player가 없어 틱 안의 처리 순서와 hitTest 경계는 추정입니다. 원본 SWF와 1프레임 정도 다를 수 있습니다.</li><li>맵이 나오는 순서는 Flash의 난수와 달라서 원본과 다르고, 맵 등장 확률은 같습니다.</li><li>사운드, 랭킹, 서버 기능은 없습니다. 그래픽 저작권은 원제작사(NHN)에 있으니 개인 학습용으로만 쓰세요.</li></ul>
+    </div></div>
+  </section>
+</div>
+<script type="application/json" id="data-json">/*DATA_JSON*/</script>
+<script type="application/json" id="scene-json">/*SCENE_JSON*/</script>
+<script type="application/json" id="weights-json">/*WEIGHTS_JSON*/</script>
+<script type="application/json" id="audio-json">/*AUDIO_JSON*/</script>
+<script type="application/json" id="ladder-json">/*LADDER_JSON*/</script>
+<script id="src-sim">/*SIM_JS*/</script>
+<script id="src-trainer">/*TRAINER_JS*/</script>
+<script type="text/plain" id="src-worker">/*WORKER_JS*/</script>
+<script>/*RENDER_JS*/</script>
+<script>/*NETVIEW_JS*/</script>
+<script>/*TRAINCTL_JS*/</script>
+<script>/*AUDIO_JS*/</script>
+<script>/*BATTLE_JS*/</script>
+<script>/*APP_JS*/</script>
+</body>
+</html>
